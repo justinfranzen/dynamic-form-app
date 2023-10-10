@@ -1,26 +1,25 @@
+<!-- App.vue -->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <DynamicForm v-if="!submittedData" />
+    <FormResults v-else />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// Inform form and form results
+import DynamicForm from './components/DynamicForm.vue';
+import FormResults from './components/FormResults.vue';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    DynamicForm,
+    FormResults,
+  },
+  computed: {
+    submittedData() {
+      return this.$store.state.form.submittedData;
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
