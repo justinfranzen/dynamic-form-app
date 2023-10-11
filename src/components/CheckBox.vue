@@ -1,17 +1,32 @@
-// TextInput.vue
+<!-- CheckBox.vue -->
 <template>
-  <div>
-    <label>{{ label }}</label>
-    <input type="checked" :value="value" @input="updateValue" />
+  <div class="custom-checkbox">
+    <label v-for="option in options" :key="option.value">
+      <input
+        type="checkbox"
+        :value="option.value"
+        v-model="selectedOptions"
+        @change="emitValue"
+      />
+      {{ option.label }}
+    </label>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['label', 'value'],
+  props: {
+    options: Array, // Array of objects with { value, label }
+    value: Array, // Selected options
+  },
+  data() {
+    return {
+      selectedOptions: this.value || [],
+    };
+  },
   methods: {
-    updateValue(event) {
-      this.$emit('input', event.target.value);
+    emitValue() {
+      this.$emit('input', this.selectedOptions);
     },
   },
 };
