@@ -1,5 +1,6 @@
 <!-- DynamicForm.vue -->
 <template>
+TextInput
   <form @submit.prevent="submitForm">
     <div v-for="field in formFields" :key="field.name">
       <component
@@ -13,12 +14,11 @@
 
 <script>
 import { formFields } from './config';
-import DropDown from './DropDown.vue';
-import CheckBox from './CheckBox.vue';
-import TextArea from './TextArea.vue';
-import TextInput from './TextInput.vue';
 
 export default {
+ components: {
+    Dropdown,
+  },
   data() {
     return {
       formFields,
